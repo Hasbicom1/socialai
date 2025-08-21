@@ -164,18 +164,18 @@ class _SplashScreenState extends State<SplashScreen>
 
         // Navigation logic based on app state
         if (isFirstLaunch) {
-          Navigator.pushReplacementNamed(context, '/onboarding-flow');
+          Navigator.pushReplacementNamed(context, AppRoutes.onboarding);
         } else if (!hasValidTokens || !isAuthenticated) {
-          Navigator.pushReplacementNamed(context, '/platform-connection-setup');
+          Navigator.pushReplacementNamed(context, AppRoutes.platformSetup);
         } else {
-          // Navigate to main app (using settings as placeholder for main feed)
-          Navigator.pushReplacementNamed(context, '/settings-and-privacy');
+          // Navigate to ZW dashboard
+          Navigator.pushReplacementNamed(context, AppRoutes.zwDashboard);
         }
       }
     } catch (e) {
       if (mounted) {
         _restoreStatusBar();
-        Navigator.pushReplacementNamed(context, '/onboarding-flow');
+        Navigator.pushReplacementNamed(context, AppRoutes.onboarding);
       }
     }
   }

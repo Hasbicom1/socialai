@@ -8,6 +8,7 @@ import '../presentation/platform_management_screen/platform_management_screen.da
 import '../presentation/content_detail_view/content_detail_view.dart';
 import '../presentation/ai_assistant_panel/ai_assistant_panel.dart';
 import '../presentation/settings_and_privacy/settings_and_privacy.dart';
+import '../presentation/zw_dashboard/zw_dashboard_screen.dart';
 
 class AppRoutes {
   static const String initial = splash;
@@ -19,6 +20,7 @@ class AppRoutes {
   static const String contentDetail = '/content-detail';
   static const String aiAssistant = '/ai-assistant';
   static const String settings = '/settings';
+  static const String zwDashboard = '/zw-dashboard';
 
   static Map<String, WidgetBuilder> get routes => {
         splash: (context) => const SplashScreen(),
@@ -29,5 +31,6 @@ class AppRoutes {
         contentDetail: (context) => const ContentDetailView(),
         aiAssistant: (context) => const AiAssistantPanel(),
         settings: (context) => const SettingsAndPrivacy(),
+        zwDashboard: (context) => const ZWDashboardScreen(),
       };
 }
