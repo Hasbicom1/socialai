@@ -1,0 +1,40 @@
+name: socialai
+description: "AI-powered social media aggregation platform"
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.2.0
+  flutter: ">=3.16.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.2
+  sizer: ^2.0.15
+  cached_network_image: ^3.4.1
+  flutter_svg: ^2.2.0
+  shared_preferences: ^2.2.2
+  dio: ^5.7.0
+  connectivity_plus: ^5.0.2
+  fl_chart: ^0.65.0
+  fluttertoast: ^8.2.4
+  google_fonts: ^6.1.0
+  supabase_flutter: ^2.9.1
+  url_launcher: ^6.3.2
+  webview_flutter: ^4.13.0
+
+  web: any
+  path_provider: any
+  permission_handler: any
+  record: ^6.0.0
+  universal_html: ^2.2.4
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/images/
