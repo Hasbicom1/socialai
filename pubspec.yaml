@@ -1,5 +1,5 @@
 name: socialai
-description: "AI-powered social media aggregation platform"
+description: "ZW - AI-powered mobile app aggregation and summarization platform"
 publish_to: 'none'
 version: 1.0.0+1
 
@@ -23,12 +23,27 @@ dependencies:
   supabase_flutter: ^2.9.1
   url_launcher: ^6.3.2
   webview_flutter: ^4.13.0
+  device_apps: ^2.2.0
+  device_info_plus: ^10.1.0
+  package_info_plus: ^5.0.1
+  app_settings: ^5.1.1
+  share_plus: ^8.1.0
+  path_provider: ^2.1.2
+  permission_handler: ^11.3.1
+  tflite_flutter: ^0.10.4
+  image: ^4.1.7
+  http: ^1.2.0
+  lottie: ^3.1.2
+  shimmer: ^3.0.0
+  pull_to_refresh: ^2.0.0
+  carousel_slider: ^4.2.1
+  photo_view: ^0.14.0
+  timeago: ^3.6.1
 
   web: any
-  path_provider: any
-  permission_handler: any
   record: ^6.0.0
   universal_html: ^2.2.4
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -38,3 +53,5 @@ flutter:
   uses-material-design: true
   assets:
     - assets/images/
+    - assets/animations/
+    - assets/icons/

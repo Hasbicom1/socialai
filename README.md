@@ -1,6 +1,41 @@
-# Flutter
+# ZW - AI-Powered Mobile App Aggregation Platform
 
-A modern Flutter-based mobile application utilizing the latest mobile development technologies and tools for building responsive cross-platform applications.
+ZW is a revolutionary mobile application that transforms how you interact with your installed apps. It provides a unified, AI-powered feed that aggregates updates from all your selected applications, presenting them in an intuitive reel-style interface.
+
+## 🚀 Features
+
+### **Core Functionality**
+- **App Discovery**: Automatically detects all installed applications on your device
+- **Smart Selection**: Choose which apps ZW should monitor and aggregate
+- **Unified Feed**: View updates from all selected apps in one beautiful, scrollable interface
+- **AI Summarization**: Get intelligent summaries and insights about your app activity
+- **Seamless Navigation**: Swipe right to open the source app, swipe back to return to ZW
+
+### **AI-Powered Features**
+- **Smart Categorization**: Automatically categorizes apps (Social, Messaging, Email, etc.)
+- **Priority Detection**: Identifies high-priority updates and notifications
+- **Usage Analytics**: Provides insights into your app usage patterns
+- **Intelligent Recommendations**: Suggests optimizations and productivity improvements
+
+### **User Experience**
+- **Modern UI**: Beautiful dark theme with gradient accents and smooth animations
+- **Reel-Style Interface**: Intuitive card-based navigation similar to popular social media apps
+- **Real-time Updates**: Live synchronization with your selected apps
+- **Customizable Filters**: Filter updates by app category or type
+- **Gesture Support**: Intuitive swipe and tap interactions
+
+## 📱 Screenshots
+
+*[Screenshots will be added after the first build]*
+
+## 🛠️ Technical Stack
+
+- **Framework**: Flutter 3.24.5+
+- **Language**: Dart
+- **Backend**: Supabase (User profiles, preferences, analytics)
+- **AI Integration**: TensorFlow Lite for on-device AI processing
+- **Device Integration**: Accessibility services for app monitoring
+- **UI/UX**: Custom Material Design with dark theme optimization
 
 ## 📋 Prerequisites
 
@@ -8,135 +43,207 @@ A modern Flutter-based mobile application utilizing the latest mobile developmen
 - Dart SDK
 - Android Studio / VS Code with Flutter extensions
 - Android SDK / Xcode (for iOS development)
+- Android device with API level 21+ for testing
 
-## 🛠️ Installation
+## 🚀 Installation & Setup
 
-1. Install dependencies:
+### 1. Clone the Repository
+```bash
+git clone https://github.com/Hasbicom1/socialai.git
+cd socialai
+```
+
+### 2. Install Dependencies
 ```bash
 flutter pub get
 ```
 
-2. Run the application:
+### 3. Configure Environment
+Create an `env.json` file in the root directory:
+```json
+{
+  "SUPABASE_URL": "your_supabase_url",
+  "SUPABASE_ANON_KEY": "your_supabase_anon_key"
+}
+```
 
-To run the app with environment variables defined in an env.json file, follow the steps mentioned below:
-1. Through CLI
-    ```bash
-    flutter run --dart-define-from-file=env.json
-    ```
-2. For VSCode
-    - Open .vscode/launch.json (create it if it doesn't exist).
-    - Add or modify your launch configuration to include --dart-define-from-file:
-    ```json
+### 4. Run the Application
+
+**Through CLI:**
+```bash
+flutter run --dart-define-from-file=env.json
+```
+
+**For VSCode:**
+1. Open `.vscode/launch.json` (create if it doesn't exist)
+2. Add configuration:
+```json
+{
+  "version": "0.2.0",
+  "configurations": [
     {
-        "version": "0.2.0",
-        "configurations": [
-            {
-                "name": "Launch",
-                "request": "launch",
-                "type": "dart",
-                "program": "lib/main.dart",
-                "args": [
-                    "--dart-define-from-file",
-                    "env.json"
-                ]
-            }
-        ]
+      "name": "Launch ZW",
+      "request": "launch",
+      "type": "dart",
+      "program": "lib/main.dart",
+      "args": ["--dart-define-from-file", "env.json"]
     }
-    ```
-3. For IntelliJ / Android Studio
-    - Go to Run > Edit Configurations.
-    - Select your Flutter configuration or create a new one.
-    - Add the following to the "Additional arguments" field:
-    ```bash
-    --dart-define-from-file=env.json
-    ```
+  ]
+}
+```
+
+**For IntelliJ / Android Studio:**
+1. Go to Run > Edit Configurations
+2. Select your Flutter configuration
+3. Add to "Additional arguments": `--dart-define-from-file=env.json`
 
 ## 📁 Project Structure
 
 ```
-flutter_app/
-├── android/            # Android-specific configuration
-├── ios/                # iOS-specific configuration
+socialai/
+├── android/                    # Android-specific configuration
+├── ios/                       # iOS-specific configuration
 ├── lib/
-│   ├── core/           # Core utilities and services
-│   │   └── utils/      # Utility classes
-│   ├── presentation/   # UI screens and widgets
-│   │   └── splash_screen/ # Splash screen implementation
-│   ├── routes/         # Application routing
-│   ├── theme/          # Theme configuration
-│   ├── widgets/        # Reusable UI components
-│   └── main.dart       # Application entry point
-├── assets/             # Static assets (images, fonts, etc.)
-├── pubspec.yaml        # Project dependencies and configuration
-└── README.md           # Project documentation
+│   ├── core/                  # Core utilities and services
+│   │   ├── utils/            # Utility classes
+│   │   └── app_export.dart   # Common exports
+│   ├── presentation/         # UI screens and widgets
+│   │   ├── splash_screen/    # Splash screen
+│   │   └── zw_dashboard/     # ZW main dashboard
+│   │       ├── widgets/      # Dashboard widgets
+│   │       │   ├── zw_reel_card.dart
+│   │       │   ├── zw_ai_summary_panel.dart
+│   │       │   └── zw_app_selector.dart
+│   │       └── zw_dashboard_screen.dart
+│   ├── services/             # Business logic services
+│   │   └── zw_app_aggregator_service.dart
+│   ├── routes/               # Application routing
+│   ├── theme/                # Theme configuration
+│   └── main.dart             # Application entry point
+├── assets/                   # Static assets
+│   ├── images/              # Images and icons
+│   ├── animations/          # Lottie animations
+│   └── icons/               # App icons
+├── .github/workflows/       # GitHub Actions for CI/CD
+│   └── build.yml           # APK build workflow
+├── pubspec.yaml            # Project dependencies
+└── README.md               # Project documentation
 ```
 
-## 🧩 Adding Routes
+## 🔧 Key Components
 
-To add new routes to the application, update the `lib/routes/app_routes.dart` file:
+### **ZWAppAggregatorService**
+Core service that handles:
+- Installed app discovery and categorization
+- User preference management
+- Update aggregation and AI summarization
+- Permission management
+- Device information collection
 
-```dart
-import 'package:flutter/material.dart';
-import 'package:package_name/presentation/home_screen/home_screen.dart';
+### **ZWDashboardScreen**
+Main interface featuring:
+- Reel-style feed with PageView
+- Real-time AI status indicators
+- Category-based filtering
+- App selection modal
+- AI summary panel
 
-class AppRoutes {
-  static const String initial = '/';
-  static const String home = '/home';
+### **ZWReelCard**
+Individual update cards with:
+- App-specific styling and gradients
+- Priority-based visual indicators
+- Interactive action buttons
+- Smooth animations and gestures
 
-  static Map<String, WidgetBuilder> routes = {
-    initial: (context) => const SplashScreen(),
-    home: (context) => const HomeScreen(),
-    // Add more routes as needed
-  }
-}
-```
+## 🎨 Design System
 
-## 🎨 Theming
+### **Color Palette**
+- **Primary**: `#667EEA` (Blue gradient)
+- **Secondary**: `#764BA2` (Purple gradient)
+- **Accent**: `#F093FB` (Pink gradient)
+- **Background**: `#0A0A1A` (Dark blue)
+- **Surface**: `rgba(255,255,255,0.1)` (Glass effect)
 
-This project includes a comprehensive theming system with both light and dark themes:
+### **Typography**
+- **Headings**: SF Pro Display / Roboto
+- **Body**: SF Pro Text / Roboto
+- **Responsive**: Uses Sizer package for adaptive sizing
 
-```dart
-// Access the current theme
-ThemeData theme = Theme.of(context);
+### **Animations**
+- **Page Transitions**: Smooth slide animations
+- **Card Interactions**: Scale and fade effects
+- **Loading States**: Lottie animations
+- **AI Indicators**: Pulsing and glowing effects
 
-// Use theme colors
-Color primaryColor = theme.colorScheme.primary;
-```
+## 🔐 Permissions
 
-The theme configuration includes:
-- Color schemes for light and dark modes
-- Typography styles
-- Button themes
-- Input decoration themes
-- Card and dialog themes
+ZW requires the following permissions:
+- **Accessibility**: To monitor app activity and notifications
+- **Notification Access**: To read and aggregate notifications
+- **Storage**: To cache app data and preferences
 
-## 📱 Responsive Design
+## 🚀 Deployment
 
-The app is built with responsive design using the Sizer package:
-
-```dart
-// Example of responsive sizing
-Container(
-  width: 50.w, // 50% of screen width
-  height: 20.h, // 20% of screen height
-  child: Text('Responsive Container'),
-)
-```
-## 📦 Deployment
-
-Build the application for production:
-
+### **Build APK**
 ```bash
-# For Android
-flutter build apk --release
+# Development build
+flutter build apk --debug
 
-# For iOS
-flutter build ios --release
+# Release build
+flutter build apk --release
 ```
+
+### **Cloud Build (Recommended)**
+The repository includes GitHub Actions workflow for automated APK builds:
+1. Push code to the repository
+2. GitHub Actions automatically builds the APK
+3. Download the APK from the Actions tab
+
+### **Installation**
+1. Enable "Install from Unknown Sources" on your Android device
+2. Download and install the APK
+3. Grant required permissions when prompted
+4. Start using ZW!
+
+## 🔮 Future Enhancements
+
+### **Planned Features**
+- **Real AI Integration**: OpenAI/Claude API integration for advanced summarization
+- **Notification Monitoring**: Real-time notification aggregation
+- **Usage Analytics**: Detailed app usage insights and reports
+- **Smart Scheduling**: AI-powered notification scheduling
+- **Cross-Platform Sync**: Web dashboard for desktop access
+- **Custom Themes**: User-customizable color schemes
+- **Widget Support**: Home screen widgets for quick access
+
+### **Technical Improvements**
+- **Performance Optimization**: Lazy loading and caching improvements
+- **Battery Optimization**: Efficient background processing
+- **Offline Support**: Local caching and offline functionality
+- **Accessibility**: Enhanced accessibility features
+- **Testing**: Comprehensive unit and integration tests
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## 🙏 Acknowledgments
-- Built with [Rocket.new](https://rocket.new)
-- Powered by [Flutter](https://flutter.dev) & [Dart](https://dart.dev)
-- Styled with Material Design
 
-Built with ❤️ on Rocket.new
+- **Flutter Team**: For the amazing cross-platform framework
+- **Supabase**: For the backend infrastructure
+- **Material Design**: For the design system inspiration
+- **Open Source Community**: For the various packages and tools used
+
+---
+
+**Built with ❤️ using Flutter & Dart**
+
+*ZW - Your AI-powered app companion*
